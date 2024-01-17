@@ -1,28 +1,25 @@
 console.log("ola mundo")
+function resolveEquacaoCubica(): number[] {
+    const a = 1;
+    const b = -3;
+    const c = -4;
+    const d = 12;
 
-// f(x) = 2x
-function f(x: number): number {
-    return 2 * x
-}
+    // Encontrando raízes possíveis (números inteiros)
+    const raizes: number[] = [];
 
-function baskasra(a: number, b: number, c: number) {
-    // ax2 + bx + c
-    const delta = (b * b) - 4 * a * c
-    if (delta < 0) {
-        return "Delta negativo"
+    for (let x = -10; x <= 10; x++) {
+        const resultado = a * x**3 + b * x**2 + c * x + d;
+
+        // Verifica se o resultado é praticamente zero (levando em conta a precisão de ponto flutuante)
+        if (Math.abs(resultado) < 1e-10) {
+            raizes.push(x);
+        }
     }
-    const x1 = (-b + Math.sqrt(delta)) / 2 * a
-    const x2 = (-b - Math.sqrt(delta)) / 2 * a
-    return [x1, x2]
+
+    return raizes;
 }
 
-function tabela(a: number, b: number, c: number, xi: number, xf: number) {
-    for (let x = xi; x <= xf; x++) {
-        const fx = a * (x*x) + b * x + c
-        console.log(`x:${x} | f(x):${fx}`);
-    }
-}
-
-// console.log(baskasra(1,2,3));
-console.log(tabela(1,2,3,-5,5));
-
+// Exemplo de uso
+const raizesEncontradas = resolveEquacaoCubica();
+console.log(`As raízes inteiras da equação cúbica são: ${raizesEncontradas.join(', ')}`);
