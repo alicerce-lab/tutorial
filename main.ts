@@ -1,28 +1,17 @@
-console.log("ola mundo")
+class Aluno {
+    nome: string = "";
+    sexo: string = '';
+    idade: number = 0;
 
-// f(x) = 2x
-function f(x: number): number {
-    return 2 * x
-}
-
-function baskasra(a: number, b: number, c: number) {
-    // ax2 + bx + c
-    const delta = (b * b) - 4 * a * c
-    if (delta < 0) {
-        return "Delta negativo"
+    constructor(nome: string, sexo: string, idade: number) {
+        this.nome = nome;
+        this.sexo = sexo;
+        this.idade = idade;
     }
-    const x1 = (-b + Math.sqrt(delta)) / 2 * a
-    const x2 = (-b - Math.sqrt(delta)) / 2 * a
-    return [x1, x2]
-}
 
-function tabela(a: number, b: number, c: number, xi: number, xf: number) {
-    for (let x = xi; x <= xf; x++) {
-        const fx = a * (x*x) + b * x + c
-        console.log(`x:${x} | f(x):${fx}`);
+    fala() {console.log('Oi, meu nome é ' + this.nome + ', sou do sexo '+ this.sexo+' e tenho ' + this.idade +' anos.');
     }
 }
 
-// console.log(baskasra(1,2,3));
-console.log(tabela(1,2,3,-5,5));
-
+var felip = new Aluno('Felip', 'masculino', 13);
+felip.fala();
