@@ -29,6 +29,3 @@ console.log(calcularfatorial(5))
 console.log(fact(5))
 
 
-
-
-sadfasd
