@@ -30,7 +30,7 @@ const app = express();
 
 // Basic middleware
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser(EnvVars.CookieProps.Secret));
 
 // Show routes called in console during development
@@ -44,7 +44,7 @@ if (EnvVars.NodeEnv === NodeEnvs.Production.valueOf()) {
 }
 
 // Add APIs, must be after middleware
-app.use(Paths.Base, BaseRouter);
+// app.use(Paths.Base, BaseRouter);
 
 // Add error handler
 app.use((
@@ -76,15 +76,38 @@ const staticDir = path.join(__dirname, 'public');
 app.use(express.static(staticDir));
 
 // Nav to users pg by default
-app.get('/', (_: Request, res: Response) => {
-  return res.redirect('/users');
-});
+// app.get('/', (_: Request, res: Response) => {
+//   return res.redirect('/users');
+// });
 
 // Redirect to login if not logged in.
-app.get('/users', (_: Request, res: Response) => {
-  return res.sendFile('users.html', { root: viewsDir });
-});
+// app.get('/users', (_: Request, res: Response) => {
+//   return res.sendFile('users.html', { root: viewsDir });
+// });
 
+/// Pode mexer daqui pra baixo
+
+app.get('/api/carros/:id', (req, res) => {
+  logger.info(JSON.stringify({ body: req.body, path: req.params, query: req.query }))
+  res.json(
+    {
+      message: 'ola mundo',
+      body: req.body, 
+      params: req.params, 
+      query: req.query
+    }
+  )
+})
+
+app.get('/api/getCube/:num', (req, res) => {
+  const num = Number(req.params.num)
+  res.json({
+    result: num * num
+  })
+})
+
+
+/// pode mexer daqui pra cima
 
 // **** Export default **** //
 
