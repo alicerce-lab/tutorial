@@ -106,6 +106,24 @@ app.get('/api/getCube/:num', (req, res) => {
   })
 })
 
+app.get('/api/getconta/:saldo', (req, res) => {
+  const saldo= Number(req.params.saldo)
+  const result = (saldo + 10)/2
+  if (result > 7) {
+  
+    res.json({
+      mensagem: "Aprovado!!",
+      result: result
+    });
+  } else {
+  
+    res.json({
+      mensagem: "Reprovado",
+      result: result
+    });
+  }
+});
+
 app.get('/api/getPrimeiraMensagem', (req,res) => {
   logger.info(JSON.stringify({ body: req.body, path: req.params, query: req.query }))
   res.json(
@@ -117,6 +135,7 @@ app.get('/api/getPrimeiraMensagem', (req,res) => {
     }
   )
 })
+
 app.get('/api/getSomeDouble/:num1', (req, res) => {
 
   const num1 = Number(req.params.num1)
@@ -124,6 +143,7 @@ app.get('/api/getSomeDouble/:num1', (req, res) => {
     result:  num1 + (2 * num1)
   })
 })
+
 
 /// pode mexer daqui pra cima
 
