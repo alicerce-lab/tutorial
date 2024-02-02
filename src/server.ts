@@ -109,8 +109,10 @@ app.get('/api/getCube/:num', (req, res) => {
 app.get('/api/getconta/:saldo', (req, res) => {
   const saldo= Number(req.params.saldo)
   const result = (saldo + 10)/2
+  if (isNaN(saldo)) {
+    return res.status(400).json({ mensagem: "Por favor, insira um número válido." });
+  }
   if (result > 7) {
-  
     res.json({
       mensagem: "Aprovado!!",
       result: result
