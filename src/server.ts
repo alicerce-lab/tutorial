@@ -106,6 +106,24 @@ app.get('/api/getCube/:num', (req, res) => {
   })
 })
 
+app.get('/api/getPrimeiraMensagem', (req,res) => {
+  logger.info(JSON.stringify({ body: req.body, path: req.params, query: req.query }))
+  res.json(
+    {
+      message: 'Get feito por Jamerson',
+      body: req.body, 
+      params: req.params, 
+      query: req.query
+    }
+  )
+})
+app.get('/api/getSomeDouble/:num1', (req, res) => {
+
+  const num1 = Number(req.params.num1)
+  res.json({
+    result:  num1 + (2 * num1)
+  })
+})
 
 /// pode mexer daqui pra cima
 
