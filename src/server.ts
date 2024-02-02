@@ -108,14 +108,21 @@ app.get('/api/getCube/:num', (req, res) => {
 
 app.get('/api/getconta/:saldo', (req, res) => {
   const saldo= Number(req.params.saldo)
-  if(saldo < 0){ 
-  console.log("vc foi aprovado!!") }
-  res.json({
-    result: (saldo + 10)/2
-     }
-
-    )
-  })
+  const result = (saldo + 10)/2
+  if (result > 7) {
+  
+    res.json({
+      mensagem: "Aprovado!!",
+      result: result
+    });
+  } else {
+  
+    res.json({
+      mensagem: "Reprovado",
+      result: result
+    });
+  }
+});
   
 
 /// pode mexer daqui pra cima
