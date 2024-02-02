@@ -137,12 +137,22 @@ app.get('/api/getPrimeiraMensagem', (req,res) => {
 })
 
 app.get('/api/getSomeDouble/:num1', (req, res) => {
+  const num1 = Number(req.params.num1);
 
-  const num1 = Number(req.params.num1)
-  res.json({
-    result:  num1 + (2 * num1)
-  })
-})
+  if (isNaN(num1)) {
+    console.log("Você colocou letras ou palavras, somente números são permitidos");
+    res.status(400).json({
+      error: "Entrada inválida. Por favor, forneça um número válido."
+    });
+  } else {
+    const result = num1 + (2 * num1);
+    res.json({
+      result: result
+    });
+  }
+});
+
+
 
 
 /// pode mexer daqui pra cima
